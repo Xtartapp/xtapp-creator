@@ -4,7 +4,7 @@ import { useSearchParams } from "@remix-run/react"
 import clsx from "clsx"
 import { useEffect, useState } from "react"
 import { ProductCard } from "~/components/product-card"
-import { alignments, gradients, justifications, paddings } from "~/configs"
+import { alignments, backgrounds, justifications, paddings } from "~/configs"
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,13 +19,13 @@ export default function Index() {
   const [padding, setPadding] = useState("")
   const [alignment, setAlignment] = useState("")
   const [justification, setJustification] = useState("")
-  const [gradient, setGradient] = useState("")
+  const [background, setBackground] = useState("ash")
 
   useEffect(() => {
     setPadding(searchParams.get("padding") ?? "")
     setAlignment(searchParams.get("alignment") ?? "")
     setJustification(searchParams.get("justification") ?? "")
-    setGradient(searchParams.get("gradient") ?? "")
+    setBackground(searchParams.get("background") ?? "")
   }, [searchParams])
 
   return (
@@ -55,16 +55,16 @@ export default function Index() {
             value={justification}
           />
           <SelectConfigs
-            label="Gradient"
-            items={gradients}
-            onChange={setGradient}
-            value={gradient}
+            label="Background"
+            items={backgrounds}
+            onChange={setBackground}
+            value={background}
           />
           <Button
             className="w-full mt-4"
             onClick={() => {
               fetch(
-                `screenshots?padding=${padding}&alignment=${alignment}&justification=${justification}&gradient=${gradient}`,
+                `screenshots?padding=${padding}&alignment=${alignment}&justification=${justification}&background=${background}`,
                 {
                   method: "GET",
                 }
@@ -91,7 +91,7 @@ export default function Index() {
               padding,
               alignment,
               justification,
-              gradient
+              background
             )}
             id="screen"
           >
