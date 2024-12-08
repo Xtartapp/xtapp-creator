@@ -1,10 +1,16 @@
-import { Button, Select, SelectItem } from "@nextui-org/react"
+import { Button, Link, Select, SelectItem } from "@nextui-org/react"
 import type { MetaFunction } from "@remix-run/node"
 import { useSearchParams } from "@remix-run/react"
 import clsx from "clsx"
 import { useEffect, useState } from "react"
-import { ProductCard } from "~/components/product-card"
-import { alignments, backgrounds, justifications, paddings } from "~/configs"
+import { Component } from "~/components/component"
+import {
+  alignments,
+  backgrounds,
+  justifications,
+  paddings,
+  scaleFactors,
+} from "~/configs"
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,12 +26,14 @@ export default function Index() {
   const [alignment, setAlignment] = useState("")
   const [justification, setJustification] = useState("")
   const [background, setBackground] = useState("ash")
+  const [scaleFactor, setScaleFactor] = useState("md")
 
   useEffect(() => {
     setPadding(searchParams.get("padding") ?? "")
     setAlignment(searchParams.get("alignment") ?? "")
     setJustification(searchParams.get("justification") ?? "")
     setBackground(searchParams.get("background") ?? "")
+    setScaleFactor(searchParams.get("scaleFactor") ?? "")
   }, [searchParams])
 
   return (
@@ -60,11 +68,18 @@ export default function Index() {
             onChange={setBackground}
             value={background}
           />
+          <SelectConfigs
+            label="Scale Factor"
+            items={scaleFactors}
+            onChange={setScaleFactor}
+            value={scaleFactor}
+          />
           <Button
             className="w-full mt-4"
+            color="success"
             onClick={() => {
               fetch(
-                `screenshots?padding=${padding}&alignment=${alignment}&justification=${justification}&background=${background}`,
+                `screenshots?padding=${padding}&alignment=${alignment}&justification=${justification}&background=${background}&scaleFactor=${scaleFactor}`,
                 {
                   method: "GET",
                 }
@@ -83,6 +98,14 @@ export default function Index() {
           >
             Download
           </Button>
+          <Button
+            as={Link}
+            href="/preview"
+            className="w-full mt-4"
+            target="_blank"
+          >
+            Preview in web screen
+          </Button>
         </div>
         <div className="flex justify-center w-9/12 items-center">
           <div
@@ -95,8 +118,10 @@ export default function Index() {
             )}
             id="screen"
           >
-            {/* Render your components here */}
-            <ProductCard />
+            <div className={clsx("w-auto h-auto", scaleFactor)}>
+              {/* Render your components here */}
+              <Component />
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-export function ProductCard() {
+export function Component() {
   return (
     <div className="flex gap-2">
       <div className="bg-white p-3 rounded-lg shadow-lg max-w-96">

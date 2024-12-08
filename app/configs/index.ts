@@ -21,6 +21,16 @@ export const justifications = [
   { key: "end", value: "justify-end" },
 ]
 
+export const scaleFactors = [
+  { key: "none", value: "" },
+  { key: "xs", value: "scale-75" },
+  { key: "sm", value: "scale-90" },
+  { key: "md", value: "scale-100" },
+  { key: "lg", value: "scale-105" },
+  { key: "xl", value: "scale-110" },
+  { key: "2xl", value: "scale-125" },
+]
+
 export const backgrounds = [
   { key: "none", value: "" },
   { key: "Amber", value: "bg-amber-500" },
