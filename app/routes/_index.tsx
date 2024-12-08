@@ -3,7 +3,7 @@ import type { MetaFunction } from "@remix-run/node"
 import { useSearchParams } from "@remix-run/react"
 import clsx from "clsx"
 import { useEffect, useState } from "react"
-import { Component } from "~/components/component"
+import Component from "~/components/component"
 import {
   alignments,
   backgrounds,
