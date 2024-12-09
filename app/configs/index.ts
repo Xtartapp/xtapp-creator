@@ -73,6 +73,6 @@ export const backgrounds = [
   { key: "Teal", value: "bg-gradient-to-r from-teal-400 to-teal-700" },
   { key: "Twitter", value: "bg-gradient-to-r from-blue-400 to-blue-600" },
   { key: "Violet", value: "bg-violet-400" },
-  { key: "White", value: "bg-gray-100" },
+  { key: "White", value: "bg-gradient-to-r from-white to-gray-50" },
   { key: "Yellow", value: "bg-yellow-400" },
 ]

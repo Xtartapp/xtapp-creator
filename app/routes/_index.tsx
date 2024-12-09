@@ -110,7 +110,7 @@ export default function Index() {
         <div className="flex justify-center w-9/12 items-center">
           <div
             className={clsx(
-              "w-[900px] h-[675px] bg-gray-300 flex flex-col",
+              "w-[900px] h-[675px] flex flex-col",
               padding,
               alignment,
               justification,
